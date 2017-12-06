@@ -1,6 +1,7 @@
 ---
 layout: post
 title: HP keylogger
+---
 
 TL;DR:
 
@@ -9,4 +10,3 @@ Get the list of affected hardware and patch here: https://support.hp.com/us-en/d
 
 ***
 Sometime ago someone asked me if I can figure out how to control HP's laptop keyboard backlit. I asked for the keyboard driver SynTP.sys, opened it in IDA and after some browsing noticed a few interesting strings:
----
