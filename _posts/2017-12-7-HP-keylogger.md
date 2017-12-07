@@ -21,12 +21,10 @@ Yet another string gave me a hint about the original name of sub_140022C10: CPal
 {% highlight C %}
 char __fastcall KeyboardHookCallback(unsigned int a1, int a2, unsigned int a3)
 {
-  if ( DebugMask &amp; 4 )
+  if ( DebugMask & 4 )
   {
     LODWORD(v19) = v3;
-    TraceMessage((__int64)"CPalmDetect::KeyboardHookCallback",
-                 3u,
-                 "ulScanCode=0x%02X, bKeyFlags=%X", a1, v19);
+    TraceMessage((__int64)"CPalmDetect::KeyboardHookCallback", 3u, "ulScanCode=0x%02X, bKeyFlags=%X", a1, v19);
     v4 = DebugMask;
   }
 ...
@@ -45,12 +43,12 @@ void TraceMessage(char *pFuncName, unsigned char Level, const char *pFmt, ...)
   va_start(va, pFmt);
   if ( pFmt )
     vsnprintf(LogString, 0xFFui64, pFmt, va);
-  if ( WppDevObj != (WPP_TRACE_CONTROL_BLOCK *)&amp;WppDevObj )
+  if ( WppDevObj != (WPP_TRACE_CONTROL_BLOCK *)&WppDevObj )
   {
-    if ( WppDevObj-&gt;Unk &amp; 2 )
+    if ( WppDevObj->Unk & 2 )
     {
-      if ( WppDevObj-&gt;Level &gt;= Level )
-        WPP_SF_ss(WppDevObj-&gt;Logger, /*MessageNumber*/ 0xC, MessageGuid, pFuncName, LogString);
+      if ( WppDevObj->Level >= Level )
+        WPP_SF_ss(WppDevObj->Logger, /*MessageNumber*/ 0xC, MessageGuid, pFuncName, LogString);
     }
   }
 }
@@ -59,18 +57,9 @@ void TraceMessage(char *pFuncName, unsigned char Level, const char *pFmt, ...)
 After all WPP_SF_ss logs formatted string using [WmiTraceMessage](https://msdn.microsoft.com/en-us/library/windows/hardware/ff565836(v=vs.85).aspx) function:
 
 {% highlight C %}
-WPP_SF_ss(
-    unsigned short LoggerHandle,
-    unsigned short MessageNumber,
-    LPGUID pMessageGuid,
-    char *pFuncName,
-    char *pLogString
-    )
+WPP_SF_ss(unsigned short LoggerHandle, unsigned short MessageNumber, LPGUID pMessageGuid, char *pFuncName, char *pLogString)
 {
-  return WmiTraceMessage(LoggerHandle,
-                         /*MessageFlags*/ WPP_TRACE_OPTIONS,
-                         MessageGuid,
-                         MessageNumber,
+  return WmiTraceMessage(LoggerHandle, /*MessageFlags*/ WPP_TRACE_OPTIONS, MessageGuid, MessageNumber,
                          (pFuncName) ? strlen(pFuncName) + 1 : 5,
                          (pFuncName) ? (pFuncName) : "NULL",
                          (pLogString) ? strlen(pLogString) + 1 : 5,
@@ -92,7 +81,7 @@ __int64 __fastcall WPP_INIT_TRACING(PDRIVER_OBJECT pDrvObj, PUNICODE_STRING pReg
 ...
   RegisterAtExitFunctions();
   WppMainCb.Callback = 0i64;
-  WppMainCb.ControlGuid = (__int64)&amp;ControlGuid; //ProviderId
+  WppMainCb.ControlGuid = (__int64)&ControlGuid; //ProviderId
   WppMainCb.Next = 0i64;
   WppMainCb.RegistryPath = 0i64;
   WppMainCb.FlagsLen = 1;
@@ -116,7 +105,7 @@ XRefing to DebugMask revealed the function that sets the value of the variable. 
 //----- (000000014008A23C) ----------------------------------------------------
 __int64 __fastcall GetDebugMask(_BYTE *a1)
 {
-  result = GetDriverParameter(a1, (__int64)"Debug", (__int64)"Mask", (__int64)&amp;v3);
+  result = GetDriverParameter(a1, (__int64)"Debug", (__int64)"Mask", (__int64)&v3);
   DebugMask = result;
   return result;
 }
