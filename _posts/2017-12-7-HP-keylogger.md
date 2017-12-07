@@ -24,7 +24,9 @@ char __fastcall KeyboardHookCallback(unsigned int a1, int a2, unsigned int a3)
   if ( DebugMask &amp; 4 )
   {
     LODWORD(v19) = v3;
-    TraceMessage((__int64)"CPalmDetect::KeyboardHookCallback", 3u, "ulScanCode=0x%02X, bKeyFlags=%X", a1, v19);
+    TraceMessage((__int64)"CPalmDetect::KeyboardHookCallback",
+                 3u,
+                 "ulScanCode=0x%02X, bKeyFlags=%X", a1, v19);
     v4 = DebugMask;
   }
 ...
@@ -57,9 +59,18 @@ void TraceMessage(char *pFuncName, unsigned char Level, const char *pFmt, ...)
 After all WPP_SF_ss logs formatted string using [WmiTraceMessage](https://msdn.microsoft.com/en-us/library/windows/hardware/ff565836(v=vs.85).aspx) function:
 
 ```C
-WPP_SF_ss(unsigned short LoggerHandle, unsigned short MessageNumber, LPGUID pMessageGuid, char *pFuncName, char *pLogString)
+WPP_SF_ss(
+    unsigned short LoggerHandle,
+    unsigned short MessageNumber,
+    LPGUID pMessageGuid,
+    char *pFuncName,
+    char *pLogString
+    )
 {
-  return WmiTraceMessage(LoggerHandle, /*MessageFlags*/ WPP_TRACE_OPTIONS, MessageGuid, MessageNumber,
+  return WmiTraceMessage(LoggerHandle,
+                         /*MessageFlags*/ WPP_TRACE_OPTIONS,
+                         MessageGuid,
+                         MessageNumber,
                          (pFuncName) ? strlen(pFuncName) + 1 : 5,
                          (pFuncName) ? (pFuncName) : "NULL",
                          (pLogString) ? strlen(pLogString) + 1 : 5,
