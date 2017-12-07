@@ -32,7 +32,7 @@ char __fastcall KeyboardHookCallback(unsigned int a1, int a2, unsigned int a3)
 
 TraceMessage function ends up calling WPP tracing function:
 
-![TraceMessage](../images/TraceMessage.PNG)
+![TraceMessage](../images/TraceMessage.png)
 
 {% highlight C %}
 void TraceMessage(char *pFuncName, unsigned char Level, const char *pFmt, ...)
