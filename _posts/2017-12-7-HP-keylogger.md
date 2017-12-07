@@ -10,7 +10,7 @@ Get the list of affected hardware and patch here: https://support.hp.com/us-en/d
 ***
 Sometime ago someone asked me if I can figure out how to control HP's laptop keyboard backlit. I asked for the keyboard driver SynTP.sys, opened it in IDA and after some browsing noticed a few interesting strings:
 
-![Strings](_posts/Strings.PNG)
+![Strings](https://github.com/zwclose/zwclose.github.io/blob/master/_posts/Strings.PNG)
 
 Hmm, looks like a format string for a keylogger, right? The string is referenced in sub_140022C10 function:
 
