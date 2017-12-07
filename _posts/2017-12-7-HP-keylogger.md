@@ -100,7 +100,7 @@ However, the value of DebugMask is 3, bit 2 is not set, debugging (and keyloggin
 
 ![DebugMask](/_posts/DebugMask.PNG)
 
-XRefing to DebugMask revealed the function that sets the value of the variable. I named the function GetDebugMask:
+XRefing to DebugMask revealed the function that sets the value of the variable. I named it GetDebugMask:
 ```C
 //----- (000000014008A23C) ----------------------------------------------------
 __int64 __fastcall GetDebugMask(_BYTE *a1)
@@ -118,4 +118,4 @@ HKLM\Software\Synaptics\%ProductName%\Default
 
 %ProductName% might be "SynTP" or "PointerPort". The value type is DWORD.
 
-At this point I had to run some ETW capture software like MessageAnalyzer to read the trace or redirect it to a file but I couldn't do that since I didn't have HP laptop. The research were done by reading the code of SynTP.sys, I couldn't verify if it's correct or not. I tried to find HP laptop for rent and asked a few communities about that but got almost no replies. One guy even thought that I am a thief trying to rob someone. So, I messaged HP about the finding. They replied terrificly fast, confirmed the presence of the keylogger (which actually was a debug trace) and released an update that removes the trace. Get the list of affected models and fixed driver at [HP website](https://support.hp.com/us-en/document/c05827409). The update also available via Windows update.
+At this point I had to run some ETW capture software like MessageAnalyzer to read the trace but I couldn't do that since I didn't have HP laptop. The research were done by reading the code of SynTP.sys, I couldn't verify if it's correct or not. I tried to find HP laptop for rent and asked a few communities about that but got almost no replies. One guy even thought that I am a thief trying to rob someone. So, I messaged HP about the finding. They replied terrificly fast, confirmed the presence of the keylogger (which actually was a debug trace) and released an update that removes the trace. Get the list of affected models and fixed driver at [HP website](https://support.hp.com/us-en/document/c05827409). The update also available via Windows update.
