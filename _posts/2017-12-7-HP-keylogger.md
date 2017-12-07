@@ -14,7 +14,7 @@ Sometime ago someone asked me if I can figure out how to control HP's laptop key
 
 Hmm, looks like a format string for a keylogger, right? The string is referenced in sub_140022C10 function:
 
-![sub_140022C10](_posts/sub_140022C10.PNG)
+![sub_140022C10](../images/Strings.PNG)
 
 Yet another string gave me a hint about the original name of sub_140022C10: CPalmDetect::KeyboardHookCallback. This is how KeyboardHookCallback looks after after applying names and decompilation:
 
