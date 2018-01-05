@@ -9,7 +9,7 @@ Get the list of affected hardware and patch here: https://support.hp.com/us-en/d
 
 UPD:
 Turns out it's not HP's failure. Synaptics released a statement on the issue: https://www.synaptics.com/company/blog/touchpad-security-brief  
-From the statement I can conclude that other vendors (Lenovo, Dell, ...) might be affected too. To check if your driver contains 'the debug tool' run "findstr.exe /I ulScanCode SynTP.sys" from the command line: if the driver is clean findstr won't print anything. Also it worth to note that the 'proprietary binary format' mentioned in the statement is easy to decode and is not necessarily "a rolling memory buffer" but might be a persistent file.
+From the statement I can conclude that other vendors (Lenovo, Dell, ...) might be affected too. To check if your driver contains 'the debug tool' run "findstr.exe /I ulScanCode SynTP.sys" from the command line: if the driver is clean findstr won't print anything. Also it worth to note that the "proprietary binary format" mentioned in the statement is easy to decode and is not necessarily "a rolling memory buffer" but might be a persistent file.
 
 ***
 Sometime ago someone asked me if I can figure out how to control HP's laptop keyboard backlit. I asked for the keyboard driver SynTP.sys, opened it in IDA and after some browsing noticed a few interesting strings:
